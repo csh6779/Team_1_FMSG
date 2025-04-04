@@ -6,7 +6,9 @@ using UnityEngine;
 public class CharacterController2D : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
-    [SerializeField] float speed = 5f;
+    private float speed;
+    [SerializeField] float Run = 8f;
+    [SerializeField] float walk = 5f;  
     Vector2 motionVector;
     public Vector2 lastMotionVector;
     Animator animator;
@@ -36,6 +38,8 @@ public class CharacterController2D : MonoBehaviour
             animator.SetFloat("lastHorizontal", horizontal);
             animator.SetFloat("lastVertical", vertical);
         }
+
+        speed = Input.GetKey(KeyCode.LeftShift) ? Run : walk;
     }
 
     void FixedUpdate()
